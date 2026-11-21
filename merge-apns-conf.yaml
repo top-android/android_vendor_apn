@@ -199,3 +199,67 @@ overrides:
     mvno_match_data: null
   set:
     roaming_protocol: IPV4V6
+# 中国联通 46001：上游条目不写 protocol（默认 IP=纯 IPv4），且首选 APN 是 3gwap
+# （联通 WAP 代理 APN，网络侧只下发 IPv4 PDP）。这里统一开双栈，并把 3gwap 从
+# default 降级为 supl，让 3gnet 成为唯一的上网 APN（与 MIUI/一加默认行为一致）。
+- match:
+    carrier: 沃3G手机上网 (China Unicom)
+    carrier_id: '1436'
+    mcc: '460'
+    mnc: '01'
+    apn: 3gwap
+    type: default,supl
+    mvno_type: null
+    mvno_match_data: null
+  set:
+    protocol: IPV4V6
+    roaming_protocol: IPV4V6
+    type: supl
+- match:
+    carrier: 沃3G连接互联网 (China Unicom)
+    carrier_id: '1436'
+    mcc: '460'
+    mnc: '01'
+    apn: 3gnet
+    type: default,supl
+    mvno_type: null
+    mvno_match_data: null
+  set:
+    protocol: IPV4V6
+    roaming_protocol: IPV4V6
+- match:
+    carrier: 联通2GNET上网 (China Unicom)
+    carrier_id: '1436'
+    mcc: '460'
+    mnc: '01'
+    apn: uninet
+    type: default,supl
+    mvno_type: null
+    mvno_match_data: null
+  set:
+    protocol: IPV4V6
+    roaming_protocol: IPV4V6
+- match:
+    carrier: 联通2g彩信 (China Unicom)
+    carrier_id: '1436'
+    mcc: '460'
+    mnc: '01'
+    apn: uniwap
+    type: mms
+    mvno_type: null
+    mvno_match_data: null
+  set:
+    protocol: IPV4V6
+    roaming_protocol: IPV4V6
+- match:
+    carrier: 联通彩信 (China Unicom)
+    carrier_id: '1436'
+    mcc: '460'
+    mnc: '01'
+    apn: 3gwap
+    type: mms
+    mvno_type: null
+    mvno_match_data: null
+  set:
+    protocol: IPV4V6
+    roaming_protocol: IPV4V6
